@@ -1,0 +1,15 @@
+{
+  "name": "orchwang-general",
+  "version": "1.0.0",
+  "description": "General-purpose Claude Code plugin for orchwang projects",
+  "author": {
+    "name": "orchwang"
+  },
+  "homepage": "https://github.com/orchwang/orchwang-claude-marketplace",
+  "repository": "https://github.com/orchwang/orchwang-claude-marketplace.git",
+  "license": "MIT",
+  "keywords": ["orchwang", "general", "development"],
+  "commands": [],
+  "skills": [],
+  "agents": []
+}

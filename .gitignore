@@ -1,0 +1,58 @@
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE and editor files
+.idea/
+.vscode/
+.nvim/
+*.swp
+*.swo
+*~
+.project
+.settings/
+
+# Node.js (if using validation scripts)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Python (if using validation scripts)
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+venv/
+.env
+
+# Logs
+logs/
+*.log
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.temp
+
+# Backup files
+*.bak
+*.backup
+
+# Local development
+.local/
+*.local
+
+# Environment variables (never commit secrets)
+.env
+.env.local
+.env.*.local
+
+# Coding Agents
+.claude/settings.local.json
