@@ -7,6 +7,14 @@
 
 ## [Unreleased]
 
+### Added
+- `local-memory` 플러그인 추가 — GitHub repo 단위 외부기억을 Obsidian vault에 저장·관리
+  - `repo-memory` 에이전트: Pre-flight check, vault 설정, repo name 감지
+  - `sync-specs` skill: specs 문서(requirements, specs, plans)를 vault에 동기화
+  - `save-idea` skill: 아이디어 메모를 vault에 저장 (태그, 중복 확인 지원)
+  - `kepano/obsidian-skills` 플러그인 의존성 연동
+- `local-memory` 플러그인 SDD 문서 작성 (`specs/create-local-memory-plugin/`)
+
 ## [1.0.0] - 2026-03-03
 
 ### Added
