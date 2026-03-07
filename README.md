@@ -32,6 +32,7 @@ orchwang 프로젝트 개발을 위한 개인 Claude Code 플러그인 마켓플
 | 플러그인 | 설명 | 버전 | 카테고리 |
 |---------|------|------|----------|
 | [orchwang-general](#orchwang-general) | 범용 Claude Code 플러그인 | 1.0.0 | development |
+| [local-memory](#local-memory) | GitHub repo 외부기억을 Obsidian vault에 저장·관리 | 1.0.0 | memory |
 
 ### orchwang-general
 
@@ -42,6 +43,21 @@ orchwang 프로젝트를 위한 범용 Claude Code 플러그인입니다.
 **설치:**
 ```bash
 /plugin install orchwang-general@orchwang-marketplace
+```
+
+### local-memory
+
+GitHub repo 단위 외부기억을 Obsidian vault에 저장·관리하는 플러그인입니다. specs 문서 동기화, 아이디어 메모 저장 기능을 제공합니다.
+
+> 의존성: [kepano/obsidian-skills](https://github.com/kepano/obsidian-skills)
+
+**설치:**
+```bash
+# 의존성 먼저 설치
+/plugin install obsidian@kepano/obsidian-skills
+
+# local-memory 설치
+/plugin install local-memory@orchwang-marketplace
 ```
 
 ## 요구 사항
