@@ -15,7 +15,7 @@
       "name": "local-memory",
       "source": "./plugins/local-memory",
       "description": "GitHub repo 단위 외부기억을 Obsidian vault에 저장·관리",
-      "version": "1.0.0"
+      "version": "1.1.0"
     }
   ]
 }

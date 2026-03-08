@@ -1,6 +1,6 @@
 {
   "name": "local-memory",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "GitHub repo 단위 외부기억을 Obsidian vault에 저장·관리하는 플러그인",
   "author": {
     "name": "orchwang"
