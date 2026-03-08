@@ -8,9 +8,5 @@
   "homepage": "https://github.com/orchwang/orchwang-claude-marketplace",
   "repository": "https://github.com/orchwang/orchwang-claude-marketplace.git",
   "license": "MIT",
-  "keywords": ["obsidian", "memory", "vault", "repo-context"],
-  "dependencies": ["kepano/obsidian-skills"],
-  "commands": [],
-  "skills": ["sync-specs", "save-idea"],
-  "agents": ["repo-memory"]
+  "keywords": ["obsidian", "memory", "vault", "repo-context"]
 }
