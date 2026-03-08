@@ -1,11 +1,11 @@
 ---
 name: check-settings
-description: local-memory 플러그인 사용에 필요한 설정 항목을 검토하고, 누락된 설정을 안내·제안한다. Use when the user mentions "설정 확인", "check settings", "setup", "local-memory 설정", or wants to configure the local-memory plugin.
+description: local-memory 플러그인 환경 및 설정을 검토하고, 누락된 항목을 대화형으로 설정한다.
 ---
 
 # check-settings
 
-local-memory 플러그인이 현재 repo 환경에서 정상 동작하기 위한 설정을 검토하고, 누락 항목을 안내·설정하는 skill.
+local-memory 플러그인이 현재 repo 환경에서 정상 동작하기 위한 설정을 검토하고, 누락 항목을 안내·설정하는 command.
 
 ## Input
 
