@@ -49,18 +49,23 @@ obsidian vault="{vault-name}" search query="test" limit=1
 
 1. `.claude/settings.local.json` 파일을 읽는다
 2. `local-memory.vault` 키에서 vault 이름을 가져온다
-3. 설정이 없으면 사용자에게 vault 이름을 물어본다 (AskUserQuestion 사용)
-4. 사용자가 입력한 vault 이름을 `.claude/settings.local.json`의 `local-memory.vault`에 저장한다
+3. `local-memory.directory` 키에서 vault 내 루트 디렉토리 이름을 가져온다
+4. 설정이 없으면 사용자에게 물어본다 (AskUserQuestion 사용)
+5. 사용자가 입력한 값을 `.claude/settings.local.json`에 저장한다
 
 ```json
 {
   "local-memory": {
-    "vault": "사용자가 입력한 vault 이름"
+    "vault": "사용자가 입력한 vault 이름",
+    "directory": "claude-memory"
   }
 }
 ```
 
-이후 모든 `obsidian` CLI 호출에 `vault="{vault-name}"` 파라미터를 전달한다.
+- `vault`: Obsidian vault 이름
+- `directory`: vault 내 루트 디렉토리 이름 (기본값: `claude-memory`)
+
+이후 모든 `obsidian` CLI 호출에 `vault="{vault-name}"` 파라미터를 전달하며, vault 내 저장 경로는 `{directory}/{repo-name}/` 하위에 구성한다.
 
 ## Repo Name 추출
 
@@ -74,7 +79,7 @@ git remote get-url origin 2>/dev/null | sed 's/.*\/\(.*\)\.git/\1/' | sed 's/.*\
 basename $(git rev-parse --show-toplevel)
 ```
 
-추출된 repo name은 vault 내 폴더 구조의 최상위 경로로 사용한다.
+추출된 repo name은 `{directory}/{repo-name}/` 경로에서 사용한다.
 
 ## Vault 폴더 구조 초기화
 
@@ -82,7 +87,7 @@ repo name이 확인되면 vault 내 폴더 구조를 준비한다:
 
 ```bash
 # repo 루트 폴더에 인덱스 노트 생성 (없을 경우)
-obsidian vault="{vault-name}" create name="{repo-name}" path="" content="---\ntype: repo-index\nrepo: {repo-name}\ntags:\n  - repo/{repo-name}\n---\n\n# {repo-name}\n\nGitHub repo 외부기억 인덱스.\n\n## Specs\n\n![[{repo-name}/specs]]\n\n## Ideas\n\n![[{repo-name}/ideas]]" silent
+obsidian vault="{vault-name}" create name="{repo-name}" path="{directory}" content="---\ntype: repo-index\nrepo: {repo-name}\ntags:\n  - repo/{repo-name}\n---\n\n# {repo-name}\n\nGitHub repo 외부기억 인덱스.\n\n## Specs\n\n![[{directory}/{repo-name}/specs]]\n\n## Ideas\n\n![[{directory}/{repo-name}/ideas]]" silent
 ```
 
 ## Skill 조율

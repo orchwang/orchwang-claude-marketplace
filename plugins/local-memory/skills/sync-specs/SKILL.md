@@ -1,6 +1,6 @@
 ---
 name: sync-specs
-description: specs 문서(requirements, specs, plans)를 Obsidian vault에 동기화한다. 현재 repo의 specs/ 디렉토리를 스캔하여 vault의 {repo-name}/specs/{task-name}/ 경로에 저장한다. Use when the user wants to sync spec documents to Obsidian, or mentions "sync specs", "obsidian에 저장", "vault에 동기화".
+description: specs 문서(requirements, specs, plans)를 Obsidian vault에 동기화한다. 현재 repo의 specs/ 디렉토리를 스캔하여 vault의 {directory}/{repo-name}/specs/{task-name}/ 경로에 저장한다. Use when the user wants to sync spec documents to Obsidian, or mentions "sync specs", "obsidian에 저장", "vault에 동기화".
 ---
 
 # sync-specs
@@ -18,7 +18,11 @@ specs 문서를 Obsidian vault에 동기화하는 skill.
 
 ### Step 1: 컨텍스트 확인
 
-repo-memory 에이전트의 Pre-flight check를 수행하여 vault-name과 repo-name을 확인한다.
+repo-memory 에이전트의 Pre-flight check를 수행하여 vault-name, directory, repo-name을 확인한다.
+
+- `vault-name`: `.claude/settings.local.json`의 `local-memory.vault`
+- `directory`: `.claude/settings.local.json`의 `local-memory.directory` (기본값: `claude-memory`)
+- `repo-name`: git remote 또는 디렉토리명에서 추출
 
 ### Step 2: Task 목록 수집
 
@@ -60,7 +64,7 @@ tags:
 #### Obsidian CLI 명령
 
 ```bash
-obsidian vault="{vault-name}" create name="{task-name}-{type}" path="{repo-name}/specs/{task-name}" content="{frontmatter + 원본 내용}" overwrite silent
+obsidian vault="{vault-name}" create name="{task-name}-{type}" path="{directory}/{repo-name}/specs/{task-name}" content="{frontmatter + 원본 내용}" overwrite silent
 ```
 
 - `name`: `{task-name}-requirements`, `{task-name}-specs`, `{task-name}-plans`
@@ -76,9 +80,9 @@ obsidian vault="{vault-name}" create name="{task-name}-{type}" path="{repo-name}
 Obsidian vault 동기화 완료: {vault-name}
 
 동기화된 문서:
-  - {repo-name}/specs/{task-name}/requirements.md
-  - {repo-name}/specs/{task-name}/specs.md
-  - {repo-name}/specs/{task-name}/plans.md
+  - {directory}/{repo-name}/specs/{task-name}/requirements.md
+  - {directory}/{repo-name}/specs/{task-name}/specs.md
+  - {directory}/{repo-name}/specs/{task-name}/plans.md
 
 총 {N}개 task, {M}개 문서 동기화됨
 ```
