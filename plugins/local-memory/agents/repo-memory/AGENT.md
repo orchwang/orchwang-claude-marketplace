@@ -47,23 +47,23 @@ obsidian vault="{vault-name}" search query="test" limit=1
 
 ## Vault 설정 읽기
 
-1. `.claude/settings.local.json` 파일을 읽는다
-2. `local-memory.vault` 키에서 vault 이름을 가져온다
-3. `local-memory.directory` 키에서 vault 내 루트 디렉토리 이름을 가져온다
-4. 설정이 없으면 사용자에게 물어본다 (AskUserQuestion 사용)
-5. 사용자가 입력한 값을 `.claude/settings.local.json`에 저장한다
+1. `.claude/local-memory.json` 파일을 읽는다
+2. `vault` 키에서 vault 이름을 가져온다
+3. `directory` 키에서 vault 내 루트 디렉토리 이름을 가져온다
+4. 파일이 없거나 필수 설정이 누락되면 사용자에게 물어본다 (AskUserQuestion 사용)
+5. 사용자가 입력한 값을 `.claude/local-memory.json`에 저장한다
+
+**설정 파일**: `.claude/local-memory.json` (전용 설정 파일, settings.local.json과 분리)
 
 ```json
 {
-  "local-memory": {
-    "vault": "사용자가 입력한 vault 이름",
-    "directory": "claude-memory"
-  }
+  "vault": "MyVault",
+  "directory": "claude-memory"
 }
 ```
 
-- `vault`: Obsidian vault 이름
-- `directory`: vault 내 루트 디렉토리 이름 (기본값: `claude-memory`)
+- `vault` (필수): Obsidian vault 이름
+- `directory` (선택): vault 내 루트 디렉토리 이름 (기본값: `claude-memory`)
 
 이후 모든 `obsidian` CLI 호출에 `vault="{vault-name}"` 파라미터를 전달하며, vault 내 저장 경로는 `{directory}/{repo-name}/` 하위에 구성한다.
 

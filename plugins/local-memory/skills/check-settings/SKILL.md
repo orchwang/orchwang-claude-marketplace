@@ -61,21 +61,21 @@ obsidian help 2>&1
 - OK: skill 사용 가능
 - MISSING: 미설치
 
-### Step 2: settings.local.json 검토
+### Step 2: local-memory.json 검토
 
-`.claude/settings.local.json` 파일을 읽어 `local-memory` 설정 항목을 검사한다.
+`.claude/local-memory.json` 파일을 읽어 설정 항목을 검사한다.
 
 #### 2.1 파일 존재 여부
 
 - OK: 파일 존재
 - MISSING: 파일 없음 → 생성 필요
 
-#### 2.2 `local-memory.vault`
+#### 2.2 `vault`
 
 - OK: 값이 설정됨
 - MISSING: 미설정
 
-#### 2.3 `local-memory.directory`
+#### 2.3 `directory`
 
 - OK: 값이 설정됨
 - MISSING: 미설정 (기본값 `claude-memory` 사용 가능)
@@ -96,11 +96,11 @@ local-memory 설정 검토 결과
 | Obsidian CLI | WARNING | 인스톨러 업데이트 권장 |
 | obsidian-skills | OK | obsidian:obsidian-cli 사용 가능 |
 
-## 설정 (.claude/settings.local.json)
+## 설정 (.claude/local-memory.json)
 | 항목 | 상태 | 값/메시지 |
 |------|------|-----------|
-| local-memory.vault | MISSING | 설정 필요 |
-| local-memory.directory | MISSING | 기본값 "claude-memory" 사용 |
+| vault | MISSING | 설정 필요 |
+| directory | MISSING | 기본값 "claude-memory" 사용 |
 ```
 
 ### Step 4: 누락 항목 설정 제안
@@ -123,14 +123,12 @@ AskUserQuestion으로 directory 이름을 물어본다:
 
 #### 설정 저장
 
-사용자가 입력한 값을 `.claude/settings.local.json`에 저장한다. 기존 설정이 있으면 `local-memory` 키만 추가/병합한다.
+사용자가 입력한 값을 `.claude/local-memory.json`에 저장한다. 파일이 없으면 새로 생성한다.
 
 ```json
 {
-  "local-memory": {
-    "vault": "{사용자 입력}",
-    "directory": "{사용자 입력 또는 기본값}"
-  }
+  "vault": "{사용자 입력}",
+  "directory": "{사용자 입력 또는 기본값}"
 }
 ```
 

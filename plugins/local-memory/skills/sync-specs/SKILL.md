@@ -20,8 +20,8 @@ specs 문서를 Obsidian vault에 동기화하는 skill.
 
 repo-memory 에이전트의 Pre-flight check를 수행하여 vault-name, directory, repo-name을 확인한다.
 
-- `vault-name`: `.claude/settings.local.json`의 `local-memory.vault`
-- `directory`: `.claude/settings.local.json`의 `local-memory.directory` (기본값: `claude-memory`)
+- `vault-name`: `.claude/local-memory.json`의 `vault`
+- `directory`: `.claude/local-memory.json`의 `directory` (기본값: `claude-memory`)
 - `repo-name`: git remote 또는 디렉토리명에서 추출
 
 ### Step 2: Task 목록 수집
