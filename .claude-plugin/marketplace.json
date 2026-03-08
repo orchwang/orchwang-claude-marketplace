@@ -7,13 +7,13 @@
   "plugins": [
     {
       "name": "orchwang-general",
-      "source": "plugins/orchwang-general",
+      "source": "./plugins/orchwang-general",
       "description": "범용 Claude Code 플러그인",
       "version": "1.0.0"
     },
     {
       "name": "local-memory",
-      "source": "plugins/local-memory",
+      "source": "./plugins/local-memory",
       "description": "GitHub repo 단위 외부기억을 Obsidian vault에 저장·관리",
       "version": "1.0.0"
     }
