@@ -1,12 +1,12 @@
 {
   "name": "local-memory",
-  "version": "1.1.0",
-  "description": "GitHub repo 단위 외부기억을 Obsidian vault에 저장·관리하는 플러그인",
+  "version": "2.0.0",
+  "description": "GitHub repo 단위 외부기억을 Obsidian vault 또는 로컬 파일시스템에 저장·관리하는 플러그인",
   "author": {
     "name": "orchwang"
   },
   "homepage": "https://github.com/orchwang/orchwang-claude-marketplace",
   "repository": "https://github.com/orchwang/orchwang-claude-marketplace.git",
   "license": "MIT",
-  "keywords": ["obsidian", "memory", "vault", "repo-context"]
+  "keywords": ["obsidian", "memory", "vault", "repo-context", "filesystem"]
 }
