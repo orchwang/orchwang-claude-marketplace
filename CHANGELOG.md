@@ -7,18 +7,22 @@
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-03-09
+
 ### Added
-- `local-memory` 플러그인 추가 — GitHub repo 단위 외부기억을 Obsidian vault에 저장·관리
+- `local-memory` 플러그인 v1.1.0 릴리스 — GitHub repo 단위 외부기억을 Obsidian vault에 저장·관리
   - `repo-memory` 에이전트: Pre-flight check, vault 설정, repo name 감지
   - `sync-specs` skill: specs 문서(requirements, specs, plans)를 vault에 동기화
   - `save-idea` skill: 아이디어 메모를 vault에 저장 (태그, 중복 확인 지원)
-  - `check-settings` skill: 환경 및 설정 항목 검토, 누락 시 대화형 설정 안내
+  - `check-settings` command: 환경 및 설정 항목 검토, 누락 시 대화형 설정 안내
   - `kepano/obsidian-skills` 플러그인 의존성 연동
 - `local-memory` 플러그인 SDD 문서 작성 (`specs/create-local-memory-plugin/`)
 - `.claude-plugin/marketplace.json` 마켓플레이스 플러그인 목록 파일 추가
 
 ### Changed
 - vault 저장 경로를 `{directory}/{repo-name}/` 구조로 변경 (`local-memory.directory` 설정 추가)
+- `check-settings`를 skill에서 command로 변경
+- 설정 파일을 `.claude/local-memory.json`으로 분리
 
 ### Fixed
 - `marketplace.json` 누락으로 인한 플러그인 설치 불가 오류 해결
