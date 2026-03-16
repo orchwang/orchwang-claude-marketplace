@@ -7,6 +7,19 @@
 
 ## [Unreleased]
 
+## [1.2.0] - 2026-03-16
+
+### Added
+- `orchwang-general` 플러그인 v1.1.0 릴리스
+  - `claude-to-codex-migrator` skill: Claude Code 프로젝트 설정(`.claude/`)을 Codex 호환 스킬 형식으로 변환
+    - `.claude/commands/*.md`, `.claude/skills/*.md` → Codex 스킬 디렉토리 변환
+    - `P1-P4_rules.md` → code-review 스킬 references 복사
+    - `CLAUDE.md` / `AGENTS.md` 호환성 분석
+    - 설치된 Claude 플러그인 에셋 → 네임스페이스 Codex 스킬 변환
+    - `migrate.py` 스크립트 (dry-run, force, plugins 옵션 지원)
+    - `format-mapping.md` 포맷 매핑 레퍼런스 문서
+    - `.claude/codex-migration.json` 설정 파일 지원
+
 ## [1.1.0] - 2026-03-09
 
 ### Added

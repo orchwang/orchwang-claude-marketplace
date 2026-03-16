@@ -9,7 +9,7 @@
       "name": "orchwang-general",
       "source": "./plugins/orchwang-general",
       "description": "범용 Claude Code 플러그인",
-      "version": "1.0.0"
+      "version": "1.1.0"
     },
     {
       "name": "local-memory",
