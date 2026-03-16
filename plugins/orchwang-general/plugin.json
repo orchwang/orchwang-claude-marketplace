@@ -1,6 +1,6 @@
 {
   "name": "orchwang-general",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "General-purpose Claude Code plugin for orchwang projects",
   "author": {
     "name": "orchwang"
@@ -10,6 +10,11 @@
   "license": "MIT",
   "keywords": ["orchwang", "general", "development"],
   "commands": [],
-  "skills": [],
+  "skills": [
+    {
+      "name": "claude-to-codex-migrator",
+      "path": "skills/claude-to-codex-migrator"
+    }
+  ],
   "agents": []
 }

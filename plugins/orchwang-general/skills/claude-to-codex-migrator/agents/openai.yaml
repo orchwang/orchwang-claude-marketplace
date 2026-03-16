@@ -1,0 +1,3 @@
+interface:
+  display_name: "Claude to Codex Migrator"
+  short_description: "Migrate Claude Code assets to Codex-compatible format"
