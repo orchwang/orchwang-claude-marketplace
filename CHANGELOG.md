@@ -7,6 +7,30 @@
 
 ## [Unreleased]
 
+## [1.3.0] - 2026-05-13
+
+### Added
+- `local-memory` 플러그인 v2.1.0 릴리스 — 저장소 스크립트(specs와 별개 1급 영역) 동기화 지원
+  - `/sync-scripts` skill 신규: bash · makefile · django-command 카테고리를 외부기억의 `{repo}/scripts/<카테고리>/` 트리에 동기화. `[<glob-or-path>] [--category bash|makefile|django-command|all]` 인자 지원
+  - `references/script-sources.md` 신규: 카테고리 인식 글롭 규칙, 파일명 인코딩 규칙, 자연어 의도 사전(intent dictionary) 단일 레퍼런스
+  - `docs/migrations/datamaker-docs-django-commands.md` 신규: datamaker-docs의 루트 평면 `django-commands/` 트리를 `synapse-backend/scripts/django-command/{app}/`로 옮기는 사용자 수동 마이그레이션 가이드
+  - `repo-memory` 에이전트에 `scope: specs | scripts | all` 라우팅 계약 추가 — 모호 시 사용자에게 명시 확인
+  - 인덱스 노트(`{repo-name}.md`)에 `## Scripts` 섹션 비파괴 lazy-append (Plugin Update Migration). 사용자가 직접 작성한 다른 섹션은 보존
+  - `/check-settings`에 "마이그레이션 감사" 절 + Django 휴리스틱(정보성) + 영역별 헬스체크(`[specs]`, `[scripts]` 라벨 분리) 추가
+
+### Changed
+- `local-memory` 플러그인 v2.1.0 (호환 유지)
+  - 플러그인 표면 텍스트(설명/키워드/README/AGENT/SKILL/command) 백엔드 중립화 — obsidian / filesystem / git 3종을 동등하게 1급으로 노출. README에 `datamaker-docs` git 백엔드 1급 예시 병기
+  - `sync-specs`와 `sync-scripts` skill 격리 — 어휘·트리거 단어·`scope` 인자·`[specs]`/`[scripts]` 출력 라벨 분리로 에이전트 라우팅 혼동 차단
+  - `plugin.json` keywords 재배치: 영역(`memory`, `repo-context`, `specs`, `scripts`) 우선 + 백엔드(`obsidian`, `filesystem`, `git`) 알파벳 순
+  - `/check-settings`의 backend 선택 프롬프트에서 기본값 무음 적용 차단, 3개 옵션을 동등 비중으로 제시
+- `.claude-plugin/marketplace.json`의 `local-memory` 버전을 실제 plugin.json(2.1.0)과 일치시키고 description을 백엔드 중립으로 갱신
+
+### Notes
+- `.claude/local-memory.json` 설정은 v2.0.0과 100% 호환 — 기존 사용자 데이터(`specs/`, `ideas/`, 인덱스 노트) 무손상
+- 신규 `scripts/` 트리와 인덱스 `## Scripts` 섹션은 `/sync-scripts` 최초 호출 시점에만 lazy-create
+- `local-memory` v2.0.0(스토리지 백엔드 추상화 — `feat-abstraction-for-local-memory-plugin` PR #2, 2026-03-09)은 마켓플레이스 v1.2.0 시점에 포함되었으나 별도 CHANGELOG 항목이 누락되어 있었음. 본 v1.3.0에서 함께 명시
+
 ## [1.2.0] - 2026-03-16
 
 ### Added
