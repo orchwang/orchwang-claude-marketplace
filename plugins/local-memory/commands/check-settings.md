@@ -118,6 +118,17 @@ git -C "{basePath}" rev-parse --is-inside-work-tree
 - OK: git 저장소
 - MISSING: git 저장소 아님
 
+#### 1.5 Django 휴리스틱 (정보성)
+
+현재 repo가 Django 프로젝트인지 가벼운 휴리스틱으로 점검한다. `[scripts]` django-command 카테고리 동기화 대상 존재 여부를 안내하기 위한 정보성 검사이며 에러로 간주하지 않는다.
+
+```bash
+find . -maxdepth 3 -name manage.py 2>/dev/null | head -1
+```
+
+- INFO (있음): "`[scripts]` Django 프로젝트가 감지되었습니다. `/sync-scripts --category django-command`로 management 명령을 동기화할 수 있습니다."
+- INFO (없음): "`[scripts]` Django 프로젝트가 아닙니다. django-command 카테고리는 동기화 대상이 없습니다."
+
 ### Step 2: local-memory.json 검토
 
 `.claude/local-memory.json` 파일을 읽어 설정 항목을 검사한다.
@@ -202,9 +213,10 @@ MISSING 상태인 설정 항목이 있으면 사용자에게 설정을 제안한
 
 #### backend 미설정 시
 
-AskUserQuestion으로 백엔드를 물어본다:
+AskUserQuestion으로 백엔드를 물어본다. 어느 한 백엔드도 자동 적용하지 않고 항상 사용자의 명시 선택을 받는다 (기본값 무음 적용 금지).
 
 - "스토리지 백엔드를 선택해주세요: obsidian / filesystem / git"
+- 세 옵션을 동등 비중으로 제시한다 — "권장", "기본값" 라벨 사용 금지
 
 #### vault 미설정 시 (obsidian 백엔드)
 
@@ -241,9 +253,11 @@ AskUserQuestion으로 directory 이름을 물어본다:
 
 ### Step 5: 연결 테스트
 
-설정이 완료되면 실제 연결을 테스트한다.
+설정이 완료되면 실제 연결을 테스트한다. `[specs]`, `[scripts]` 영역의 결과 메시지는 라벨 접두를 사용하여 분리 출력한다 (한 메시지에서 두 영역 혼합 금지).
 
 #### backend = obsidian
+
+기본 연결 확인:
 
 ```bash
 obsidian vault="{vault-name}" search query="test" limit=1
@@ -252,28 +266,95 @@ obsidian vault="{vault-name}" search query="test" limit=1
 - 성공: "vault '{vault-name}' 연결 확인 완료"
 - 실패: 원인별 안내 메시지 출력
 
+`[specs]` 헬스체크 — specs 트리에 임시 노트 생성·확인·삭제:
+
+```bash
+obsidian vault="{vault-name}" create name=".healthcheck-specs" path="{directory}/{repo-name}/specs" content="ok" overwrite silent
+obsidian vault="{vault-name}" read name=".healthcheck-specs" path="{directory}/{repo-name}/specs"
+obsidian vault="{vault-name}" delete name=".healthcheck-specs" path="{directory}/{repo-name}/specs"
+```
+
+- 성공: "[specs] specs 트리 쓰기/읽기 확인 완료"
+
+`[scripts]` 헬스체크 — scripts 트리에 임시 노트 생성·확인·삭제:
+
+```bash
+obsidian vault="{vault-name}" create name=".healthcheck-scripts" path="{directory}/{repo-name}/scripts" content="ok" overwrite silent
+obsidian vault="{vault-name}" read name=".healthcheck-scripts" path="{directory}/{repo-name}/scripts"
+obsidian vault="{vault-name}" delete name=".healthcheck-scripts" path="{directory}/{repo-name}/scripts"
+```
+
+- 성공: "[scripts] scripts 트리 쓰기/읽기 확인 완료"
+
 #### backend = filesystem
 
-테스트 파일을 생성·읽기·삭제한다:
+기본 연결 확인:
 
 ```bash
 echo "test" > "{basePath}/.local-memory-test" && cat "{basePath}/.local-memory-test" && rm "{basePath}/.local-memory-test"
 ```
 
 - 성공: "basePath '{basePath}' 읽기/쓰기 확인 완료"
-- 실패: 원인별 안내 메시지 출력
+
+`[specs]` 헬스체크:
+
+```bash
+mkdir -p "{basePath}/{directory}/{repo-name}/specs"
+echo "ok" > "{basePath}/{directory}/{repo-name}/specs/.healthcheck.md"
+cat "{basePath}/{directory}/{repo-name}/specs/.healthcheck.md"
+rm "{basePath}/{directory}/{repo-name}/specs/.healthcheck.md"
+```
+
+- 성공: "[specs] specs 트리 쓰기/읽기 확인 완료"
+
+`[scripts]` 헬스체크:
+
+```bash
+mkdir -p "{basePath}/{directory}/{repo-name}/scripts"
+echo "ok" > "{basePath}/{directory}/{repo-name}/scripts/.healthcheck.md"
+cat "{basePath}/{directory}/{repo-name}/scripts/.healthcheck.md"
+rm "{basePath}/{directory}/{repo-name}/scripts/.healthcheck.md"
+```
+
+- 성공: "[scripts] scripts 트리 쓰기/읽기 확인 완료"
 
 #### backend = git
 
-filesystem 테스트 + git 상태 확인:
+filesystem 동일 시퀀스에 더해 git 상태 확인 (헬스체크 임시 파일은 커밋하지 않음 — 항상 삭제 후 종료):
 
 ```bash
 echo "test" > "{basePath}/.local-memory-test" && cat "{basePath}/.local-memory-test" && rm "{basePath}/.local-memory-test"
+mkdir -p "{basePath}/{directory}/{repo-name}/specs" "{basePath}/{directory}/{repo-name}/scripts"
+echo "ok" > "{basePath}/{directory}/{repo-name}/specs/.healthcheck.md" && cat "$_" && rm "$_"
+echo "ok" > "{basePath}/{directory}/{repo-name}/scripts/.healthcheck.md" && cat "$_" && rm "$_"
 git -C "{basePath}" status
 ```
 
-- 성공: "basePath '{basePath}' 읽기/쓰기 및 git 저장소 확인 완료"
+- 성공: "[specs] specs 트리 / [scripts] scripts 트리 / basePath 읽기·쓰기 및 git 저장소 확인 완료" (영역별 라벨 분리 출력)
 - 실패: 원인별 안내 메시지 출력
+
+### Step 5b: 마이그레이션 감사 (v2.0.0 → v2.1.0)
+
+기존 사용자 데이터 호환을 위해 인덱스 노트·`scripts/` 트리·레거시 평면 트리 상태를 점검한다. 모든 항목은 정보성·진단성이며 자동 변경하지 않는다.
+
+| 항목 | 검사 | 보강 명령 |
+|------|------|----------|
+| 인덱스 노트 존재 | EXISTS `{directory}/{repo-name}/{repo-name}.md` | (MISSING) `/sync-scripts` 또는 `/save-idea` 1회 실행 시 자동 생성 |
+| 인덱스의 `## Scripts` 섹션 | READ 후 `^## Scripts\s*$` 라인 검출 | (MISSING) `/sync-scripts`(빈 호출 포함) 1회 실행 시 비파괴 append |
+| `{directory}/{repo-name}/scripts/` 트리 | EXISTS `scripts/` | (MISSING) `/sync-scripts` 실행 시 자동 생성 |
+| 레거시 루트 평면 트리(`django-commands/`) | filesystem/git 백엔드 한정: `test -d "{basePath}/django-commands"` | (INFO) `docs/migrations/datamaker-docs-django-commands.md` 가이드 참조 — 자동 변환 없음 |
+
+출력 예시:
+
+```
+## 마이그레이션 감사
+| 항목 | 상태 | 메시지 |
+|------|------|--------|
+| 인덱스 노트 | OK | {directory}/{repo}/{repo}.md |
+| ## Scripts 섹션 | MISSING | /sync-scripts 1회 실행으로 비파괴 append |
+| scripts/ 트리 | MISSING | /sync-scripts 실행 시 자동 생성 |
+| 레거시 django-commands/ | INFO | 발견됨 — 가이드 참조 (자동 변환 없음) |
+```
 
 ### Step 6: 최종 요약
 

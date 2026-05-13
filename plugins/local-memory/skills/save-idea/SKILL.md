@@ -5,7 +5,7 @@ description: 아이디어 메모를 저장소에 저장한다. 현재 repo의 {d
 
 # save-idea
 
-GitHub repo 작업 중 발생하는 아이디어, 메모를 Obsidian vault 또는 로컬 파일시스템에 저장하는 skill.
+GitHub repo 작업 중 발생하는 아이디어, 메모를 선택된 백엔드(obsidian / filesystem / git)에 저장하는 skill.
 
 > 백엔드별 명령어는 `references/backend-operations.md`를 참조한다.
 
@@ -22,13 +22,16 @@ GitHub repo 작업 중 발생하는 아이디어, 메모를 Obsidian vault 또�
 
 ### Step 1: 컨텍스트 확인
 
-repo-memory 에이전트의 Pre-flight check를 수행하여 backend, vault-name/basePath, directory, repo-name을 확인한다.
+`repo-memory` 에이전트를 호출하여 Pre-flight check 및 컨텍스트를 수신한다 (본 skill은 specs/scripts 영역과 별개이므로 `scope`를 강제하지 않으며, 에이전트가 ideas 폴더 초기화만 보장한다).
 
-- `backend`: `.claude/local-memory.json`의 `backend` (기본값: `"obsidian"`)
-- `vault-name`: `.claude/local-memory.json`의 `vault` (obsidian 백엔드)
-- `basePath`: `.claude/local-memory.json`의 `basePath` (filesystem/git 백엔드)
+수신 인자:
+
+- `backend`: `.claude/local-memory.json`의 `backend`
+- 백엔드별 저장 대상: obsidian 분기 본문 안에서만 등장하는 `vault-name` / filesystem·git 분기의 `basePath`
 - `directory`: `.claude/local-memory.json`의 `directory` (기본값: `claude-memory`)
 - `repo-name`: git remote 또는 디렉토리명에서 추출
+
+> Note: `backend` 미설정 시 동작 호환을 위해 `obsidian`이 적용되지만, 신규 사용자 흐름은 `/check-settings`로 명시 선택을 권장한다.
 
 ### Step 2: 입력 파싱
 

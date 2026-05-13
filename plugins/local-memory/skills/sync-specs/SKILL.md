@@ -5,9 +5,11 @@ description: specs 문서(requirements, specs, plans)를 저장소에 동기화�
 
 # sync-specs
 
-specs 문서를 Obsidian vault 또는 로컬 파일시스템에 동기화하는 skill.
+specs 문서(requirements / specs / plans)를 선택된 백엔드(obsidian / filesystem / git)에 동기화하는 skill.
 
 > 백엔드별 명령어는 `references/backend-operations.md`를 참조한다.
+>
+> 스크립트(bash / makefile / django command) 동기화는 `/sync-scripts`를 사용하세요 — 두 영역은 별도 skill로 분리되어 있습니다.
 
 ## Input
 
@@ -20,13 +22,16 @@ specs 문서를 Obsidian vault 또는 로컬 파일시스템에 동기화하는 
 
 ### Step 1: 컨텍스트 확인
 
-repo-memory 에이전트의 Pre-flight check를 수행하여 backend, vault-name/basePath, directory, repo-name을 확인한다.
+`repo-memory` 에이전트를 `scope=specs`로 호출하여 Pre-flight check 및 컨텍스트를 수신한다.
 
-- `backend`: `.claude/local-memory.json`의 `backend` (기본값: `"obsidian"`)
-- `vault-name`: `.claude/local-memory.json`의 `vault` (obsidian 백엔드)
-- `basePath`: `.claude/local-memory.json`의 `basePath` (filesystem/git 백엔드)
+수신 인자:
+
+- `backend`: `.claude/local-memory.json`의 `backend`
+- 백엔드별 저장 대상: obsidian 분기 본문 안에서만 등장하는 `vault-name` / filesystem·git 분기의 `basePath`
 - `directory`: `.claude/local-memory.json`의 `directory` (기본값: `claude-memory`)
 - `repo-name`: git remote 또는 디렉토리명에서 추출
+
+> Note: `backend` 미설정 시 동작 호환을 위해 `obsidian`이 적용되지만, 신규 사용자 흐름은 `/check-settings`로 명시 선택을 권장한다.
 
 ### Step 2: Task 목록 수집
 
@@ -94,10 +99,10 @@ cd "{basePath}" && git add -A && git commit -m "local-memory: sync specs from {r
 
 ### Step 4: 결과 보고
 
-동기화 완료 후 결과를 출력한다:
+모든 출력 메시지는 `[specs]` 접두 라벨을 사용한다 (한 메시지에서 scripts 영역과 혼합 금지).
 
 ```
-저장소 동기화 완료: {backend별 저장 위치}
+[specs] 저장소 동기화 완료: {backend별 저장 위치}
 
 동기화된 문서:
   - {directory}/{repo-name}/specs/{task-name}/requirements.md

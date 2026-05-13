@@ -59,6 +59,8 @@ cat "{basePath}/{path}/{name}.md"
 
 ### SEARCH — 경로 내 파일 목록 조회
 
+> 기본(scope 미지정 시)으로는 `path` 인자가 직접 지정한 경로를 검색한다. 영역 단위 검색이 필요할 때는 아래 "Scope-aware SEARCH" 표를 사용한다.
+
 #### obsidian
 
 ```bash
@@ -70,6 +72,16 @@ obsidian vault="{vault}" search query="path:{path}" limit={N}
 ```bash
 find "{basePath}/{path}" -name "*.md" -type f
 ```
+
+### Scope-aware SEARCH
+
+영역(`specs` / `scripts` / `all`) 단위로 검색을 한정한다. `repo-memory` 에이전트의 `scope` 인자가 본 표를 호출한다.
+
+| scope | obsidian | filesystem / git |
+|-------|----------|-----------------|
+| specs | `obsidian vault="{vault}" search query="path:{directory}/{repo}/specs" limit={N}` | `find "{basePath}/{directory}/{repo}/specs" -name "*.md" -type f` |
+| scripts | `obsidian vault="{vault}" search query="path:{directory}/{repo}/scripts" limit={N}` | `find "{basePath}/{directory}/{repo}/scripts" -name "*.md" -type f` |
+| all | `obsidian vault="{vault}" search query="path:{directory}/{repo}" limit={N}` | `find "{basePath}/{directory}/{repo}" -name "*.md" -type f` |
 
 ---
 
@@ -112,3 +124,5 @@ test -f "{basePath}/{path}/{name}.md"
 
 - **obsidian**: Obsidian wikilinks 사용 — `![[{path}]]`
 - **filesystem / git**: 표준 마크다운 링크 사용 — `[{name}]({path}/{name}.md)`
+
+> 위 규칙은 `specs/`, `scripts/`, `ideas/` 모든 영역의 인덱스 노트와 cross-link에 동일하게 적용된다.
