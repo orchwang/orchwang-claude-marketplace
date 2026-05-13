@@ -31,14 +31,12 @@ orchwang 프로젝트 개발을 위한 개인 Claude Code 플러그인 마켓플
 
 | 플러그인 | 설명 | 버전 | 카테고리 |
 |---------|------|------|----------|
-| [orchwang-general](#orchwang-general) | 범용 Claude Code 플러그인 | 1.0.0 | development |
-| [local-memory](#local-memory) | GitHub repo 외부기억을 Obsidian vault에 저장·관리 | 1.0.0 | memory |
+| [orchwang-general](#orchwang-general) | 범용 Claude Code 플러그인 | 1.1.0 | development |
+| [local-memory](#local-memory) | GitHub repo 외부기억(specs · scripts · ideas)을 선택 가능한 백엔드에 저장·관리 | 2.1.0 | memory |
 
 ### orchwang-general
 
-orchwang 프로젝트를 위한 범용 Claude Code 플러그인입니다.
-
-> 현재 스켈레톤 상태이며, 기능이 순차적으로 추가될 예정입니다.
+orchwang 프로젝트를 위한 범용 Claude Code 플러그인입니다. v1.1.0부터 `claude-to-codex-migrator` 스킬을 포함합니다 (`.claude/` 프로젝트 설정을 Codex 호환 스킬 형식으로 변환).
 
 **설치:**
 ```bash
@@ -47,18 +45,24 @@ orchwang 프로젝트를 위한 범용 Claude Code 플러그인입니다.
 
 ### local-memory
 
-GitHub repo 단위 외부기억을 Obsidian vault에 저장·관리하는 플러그인입니다. specs 문서 동기화, 아이디어 메모 저장 기능을 제공합니다.
+GitHub repo 단위 외부기억(specs · scripts · ideas)을 선택 가능한 스토리지 백엔드(obsidian / filesystem / git)에 저장·관리하는 플러그인입니다. `datamaker-docs` 같은 git 저장소를 외부기억으로 그대로 사용할 수 있습니다.
 
-> 의존성: [kepano/obsidian-skills](https://github.com/kepano/obsidian-skills)
+**주요 기능:**
+- `/sync-specs` — specs 문서(requirements · specs · plans) 동기화
+- `/sync-scripts` — 저장소 스크립트(bash · makefile · django-command) 동기화 *(v2.1.0)*
+- `/save-idea` — 아이디어 메모 저장
+- `/check-settings` — 환경/설정 검토 + 마이그레이션 감사 *(v2.1.0)*
 
 **설치:**
 ```bash
-# 의존성 먼저 설치
+# obsidian 백엔드를 사용할 경우 의존성 먼저 설치
 /plugin install obsidian@kepano/obsidian-skills
 
 # local-memory 설치
 /plugin install local-memory@orchwang-marketplace
 ```
+
+> filesystem / git 백엔드는 추가 의존성 없이 사용할 수 있습니다. 자세한 사용법은 [plugins/local-memory/README.md](./plugins/local-memory/README.md) 참고.
 
 ## 요구 사항
 
