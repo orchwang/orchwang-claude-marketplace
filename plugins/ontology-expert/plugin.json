@@ -1,0 +1,20 @@
+{
+  "name": "ontology-expert",
+  "version": "1.0.0",
+  "description": "온톨로지·시맨틱 레이어 설계 전문가(FDE 관점) — 객체·링크·데이터 매핑·엔티티 해소·액션(write-back)·거버넌스를 설계 자문과 산출물 생성으로 지원",
+  "author": {
+    "name": "orchwang"
+  },
+  "homepage": "https://github.com/orchwang/orchwang-claude-marketplace",
+  "repository": "https://github.com/orchwang/orchwang-claude-marketplace.git",
+  "license": "MIT",
+  "keywords": [
+    "ontology",
+    "semantic-layer",
+    "data-modeling",
+    "knowledge-graph",
+    "entity-resolution",
+    "fde",
+    "write-back"
+  ]
+}

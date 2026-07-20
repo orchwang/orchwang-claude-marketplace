@@ -16,6 +16,18 @@
       "source": "./plugins/local-memory",
       "description": "GitHub repo 단위 외부기억(specs · scripts · ideas)을 선택 가능한 스토리지 백엔드(obsidian / filesystem / git)에 저장·관리",
       "version": "2.1.0"
+    },
+    {
+      "name": "data-engineer",
+      "source": "./plugins/data-engineer",
+      "description": "데이터 엔지니어링 설계·실무 전문가 — 수명주기·아키텍처 패턴·Airflow/dbt/Kafka/Spark/Iceberg 실무를 설계 자문과 산출물 생성으로 지원",
+      "version": "1.0.0"
+    },
+    {
+      "name": "ontology-expert",
+      "source": "./plugins/ontology-expert",
+      "description": "온톨로지·시맨틱 레이어 설계 전문가(FDE 관점) — 객체·링크·데이터 매핑·엔티티 해소·액션(write-back)·거버넌스 설계 지원",
+      "version": "1.0.0"
     }
   ]
 }
