@@ -7,6 +7,25 @@
 
 ## [Unreleased]
 
+## [1.4.0] - 2026-07-21
+
+### Added
+- `data-engineer` 플러그인 v1.0.0 신규 — 데이터 엔지니어링 설계+실무 하이브리드 전문가
+  - `data-engineer` skill: 데이터 엔지니어링 수명주기(생성→수집→저장→변환→서빙) + 저류(undercurrents)를 판단 프레임으로, 파이프라인/플랫폼을 설계·리뷰·구현. 산출물 가이드(아키텍처·Airflow DAG·dbt 모델·Kafka/Spark 코드·Iceberg 테이블) 포함
+  - `data-engineer` agent: 요구 정리→수명주기 배치→아키텍처 패턴(Batch/Lambda/Kappa/Medallion) 선택→도구 선택→산출물 생성→품질·운영 검토의 6단계 end-to-end 자율 에이전트
+  - references 3종(progressive disclosure): `lifecycle-and-architecture.md`, `tooling-playbooks.md`(Airflow·dbt·Kafka·Spark·Iceberg·Flink), `quality-and-dataops.md`
+  - 지식 출처: `orchwang.github.io` 위키의 Data-Engineering-Essential 시리즈 및 Airflow/dbt/Kafka/Spark/Lakehouse/Stream-Processing 하위 시리즈
+- `ontology-expert` 플러그인 v1.0.0 신규 — 온톨로지·시맨틱 레이어 설계+실무 하이브리드 전문가(FDE 관점)
+  - `ontology-expert` skill: "의미 계층 ≠ 물리 데이터 모델"을 원칙으로, 객체·링크·매핑·액션(write-back)·거버넌스를 설계·리뷰·구현. 액션 지향 모델링
+  - `ontology-expert` agent: 도메인 이해(액션에서 출발)→객체 도출→링크 설계→매핑·엔티티 해소→액션/write-back→거버넌스의 6단계 FDE 워크플로 자율 에이전트
+  - references 3종(progressive disclosure): `modeling-primitives.md`, `mapping-and-actions.md`, `foundations-and-comparisons.md`(지식 그래프·시맨틱 vs 데이터 모델·온톨로지 vs DDD)
+  - 지식 출처: `orchwang.github.io` 위키의 Ontology-Essential 시리즈 및 온톨로지 vs DDD 심화편
+- SDD 스펙 문서 신규: `specs/data-engineer-plugin/`, `specs/ontology-expert-plugin/`(각 requirements·specs·plans)
+
+### Changed
+- `.claude-plugin/marketplace.json` plugins 배열에 `data-engineer`, `ontology-expert` 등록
+- 루트 `README.md` 플러그인 카탈로그에 두 전문가 플러그인 추가
+
 ## [1.3.0] - 2026-05-13
 
 ### Added

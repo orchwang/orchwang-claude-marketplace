@@ -1,0 +1,22 @@
+{
+  "name": "data-engineer",
+  "version": "1.0.0",
+  "description": "데이터 엔지니어링 설계·실무 전문가 — 수명주기(수집·저장·처리·오케스트레이션)·아키텍처 패턴·Airflow/dbt/Kafka/Spark/Iceberg 실무를 설계 자문과 산출물 생성으로 지원",
+  "author": {
+    "name": "orchwang"
+  },
+  "homepage": "https://github.com/orchwang/orchwang-claude-marketplace",
+  "repository": "https://github.com/orchwang/orchwang-claude-marketplace.git",
+  "license": "MIT",
+  "keywords": [
+    "data-engineering",
+    "data-pipeline",
+    "airflow",
+    "dbt",
+    "kafka",
+    "spark",
+    "lakehouse",
+    "iceberg",
+    "dataops"
+  ]
+}
