@@ -28,6 +28,12 @@
       "source": "./plugins/ontology-expert",
       "description": "온톨로지·시맨틱 레이어 설계 전문가(FDE 관점) — 객체·링크·데이터 매핑·엔티티 해소·액션(write-back)·거버넌스 설계 지원",
       "version": "1.0.0"
+    },
+    {
+      "name": "knowledge-librarian",
+      "source": "./plugins/knowledge-librarian",
+      "description": "사람이 관리하는 wiki/지식 저장소(md)를 read-only 소스로 지정해 카탈로그화·검색(indexer)하고, 관련 지식을 전문 서브에이전트에게 근거로 전달(dispatch)",
+      "version": "1.0.0"
     }
   ]
 }

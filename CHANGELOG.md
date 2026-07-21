@@ -7,6 +7,23 @@
 
 ## [Unreleased]
 
+## [1.5.0] - 2026-07-21
+
+### Added
+- `knowledge-librarian` 플러그인 v1.0.0 신규 — 사람이 관리하는 wiki/지식 저장소(md)를 read-only 소스로 지정해 인덱싱·검색하고 전문 서브에이전트에 근거를 전달하는 플러그인 (`local-memory`의 write-out과 반대인 read-in)
+  - `librarian` agent: indexer(스캔·파싱·검색) + dispatcher(전문가 위임) 2역할. 소스 read-only 불변식 보장(git commit/push 없음), 인덱스는 현재 repo의 `indexPath`에만 저장
+  - `knowledge-index` skill: 소스 스캔·파싱하여 카탈로그 (재)구축. 증분 갱신 / `--force` 전체 재구축, 대형 소스(500+) 경고
+  - `knowledge-search` skill: title×3/heading×2/tag·category·series×2/summary×1 가중 랭킹 검색, staleness 경고 병기
+  - `knowledge-ask` skill: 검색 후 관련 발췌를 `data-engineer`·`ontology-expert` 등 전문 서브에이전트에 출처와 함께 전달(indexer → specialist)
+  - `knowledge-settings` command: 지식 소스 설정 검토·대화형 보완, `indexPath` `.gitignore` 추가 안내
+  - references 3종: `source-config.md`(설정 스키마·backend read 매핑·read-only 보장), `index-format.md`(카탈로그 스키마·staleness), `dispatch-contract.md`(전문가 위임 계약)
+  - obsidian / filesystem / git 백엔드 read 경로 지원, 다중 소스 지원. Jekyll 블로그(`_posts/`) 검증 예시 포함 — `title`/`tags`/`categories`/`excerpt`/`series`/`published` 파싱, `_site/` 자동 배제
+- SDD 스펙 문서 신규: `specs/knowledge-librarian-plugin/`(requirements·specs·plans)
+
+### Changed
+- `.claude-plugin/marketplace.json` plugins 배열에 `knowledge-librarian` 등록
+- 루트 `README.md` 플러그인 카탈로그에 `knowledge-librarian` 추가
+
 ## [1.4.0] - 2026-07-21
 
 ### Added

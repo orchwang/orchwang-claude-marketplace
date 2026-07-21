@@ -35,6 +35,7 @@ orchwang 프로젝트 개발을 위한 개인 Claude Code 플러그인 마켓플
 | [local-memory](#local-memory) | GitHub repo 외부기억(specs · scripts · ideas)을 선택 가능한 백엔드에 저장·관리 | 2.1.0 | memory |
 | [data-engineer](#data-engineer) | 데이터 엔지니어링 설계·실무 전문가(수명주기·아키텍처·Airflow/dbt/Kafka/Spark/Iceberg) | 1.0.0 | expert |
 | [ontology-expert](#ontology-expert) | 온톨로지·시맨틱 레이어 설계 전문가(FDE — 객체·링크·매핑·액션·거버넌스) | 1.0.0 | expert |
+| [knowledge-librarian](#knowledge-librarian) | wiki/지식 저장소(md)를 read-only 소스로 인덱싱·검색하고 전문 서브에이전트에 근거 전달 | 1.0.0 | knowledge |
 
 ### orchwang-general
 
@@ -91,6 +92,23 @@ GitHub repo 단위 외부기억(specs · scripts · ideas)을 선택 가능한 �
 ```
 
 > 자세한 사용법은 [plugins/ontology-expert/README.md](./plugins/ontology-expert/README.md) 참고.
+
+### knowledge-librarian
+
+사람이 별도로 관리하는 wiki/지식 저장소(md)를 **read-only** 지식 소스로 지정하여 카탈로그화·검색(indexer)하고, 관련 지식을 `data-engineer`·`ontology-expert` 같은 전문 서브에이전트에게 근거로 전달(dispatch)하는 플러그인입니다. `local-memory`가 작업 산출물을 **write-out** 하는 것과 반대로, 큐레이션된 지식을 **read-in** 합니다. 소스는 절대 변경하지 않으며(git commit/push 없음), 인덱스는 현재 repo에만 저장합니다.
+
+**주요 기능:**
+- `/knowledge-settings` — 지식 소스 설정 검토·대화형 보완
+- `/knowledge-index` — 소스를 스캔하여 카탈로그 (재)구축
+- `/knowledge-search "질의"` — 카탈로그 랭킹 검색
+- `/knowledge-ask "질문" --to <agent>` — 관련 지식을 전문 서브에이전트에 근거로 전달
+
+**설치:**
+```bash
+/plugin install knowledge-librarian@orchwang-marketplace
+```
+
+> Jekyll 블로그(`_posts/`)를 지식 소스로 바로 사용할 수 있습니다. 자세한 사용법은 [plugins/knowledge-librarian/README.md](./plugins/knowledge-librarian/README.md) 참고.
 
 ## 요구 사항
 

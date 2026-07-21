@@ -1,0 +1,22 @@
+{
+  "name": "knowledge-librarian",
+  "version": "1.0.0",
+  "description": "사람이 관리하는 wiki/지식 저장소(md)를 read-only 소스로 지정하여 카탈로그화·검색(indexer)하고, 관련 지식을 전문 서브에이전트에게 근거로 전달(dispatch)하는 플러그인",
+  "author": {
+    "name": "orchwang"
+  },
+  "homepage": "https://github.com/orchwang/orchwang-claude-marketplace",
+  "repository": "https://github.com/orchwang/orchwang-claude-marketplace.git",
+  "license": "MIT",
+  "keywords": [
+    "knowledge",
+    "wiki",
+    "librarian",
+    "indexer",
+    "dispatch",
+    "read-only",
+    "obsidian",
+    "filesystem",
+    "git"
+  ]
+}
