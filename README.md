@@ -36,6 +36,7 @@ orchwang 프로젝트 개발을 위한 개인 Claude Code 플러그인 마켓플
 | [data-engineer](#data-engineer) | 데이터 엔지니어링 설계·실무 전문가(수명주기·아키텍처·Airflow/dbt/Kafka/Spark/Iceberg) | 1.0.0 | expert |
 | [ontology-expert](#ontology-expert) | 온톨로지·시맨틱 레이어 설계 전문가(FDE — 객체·링크·매핑·액션·거버넌스) | 1.0.0 | expert |
 | [knowledge-librarian](#knowledge-librarian) | wiki/지식 저장소(md)를 read-only 소스로 인덱싱·검색하고 전문 서브에이전트에 근거 전달 | 1.0.0 | knowledge |
+| [knowledge-graph-engineer](#knowledge-graph-engineer) | Agentic KG 설계·구축 전문가(코퍼스→추출→그래프 DB→GraphRAG·추론→에이전트 도구·기억) | 1.0.0 | expert |
 
 ### orchwang-general
 
@@ -109,6 +110,19 @@ GitHub repo 단위 외부기억(specs · scripts · ideas)을 선택 가능한 �
 ```
 
 > Jekyll 블로그(`_posts/`)를 지식 소스로 바로 사용할 수 있습니다. 자세한 사용법은 [plugins/knowledge-librarian/README.md](./plugins/knowledge-librarian/README.md) 참고.
+
+### knowledge-graph-engineer
+
+Agentic Knowledge Graph **설계+실무 하이브리드 전문가** 플러그인입니다. 비정형 코퍼스를 지식 그래프로 바꾸고(LLM 추출·엔티티 해소), 그래프 DB(Neo4j/Cypher·RDF/SPARQL)에 적재하며, GraphRAG·그래프 임베딩/추론으로 지능을 얹고, 그래프를 **도구(text-to-Cypher)이자 기억(temporal KG·write-back)**으로 쓰는 에이전트까지 설계·리뷰·구현합니다. `orchwang.github.io` 위키의 Agentic-Knowledge-Graph 시리즈(8단계)를 증류했습니다.
+
+**구성:** `knowledge-graph-engineer` skill + `knowledge-graph-engineer` agent(코퍼스→에이전트 end-to-end 8단계) + references 3종.
+
+**설치:**
+```bash
+/plugin install knowledge-graph-engineer@orchwang-marketplace
+```
+
+> 시맨틱 레이어 설계는 `ontology-expert`, 물리 파이프라인은 `data-engineer`로 위임/상호참조합니다. 자세한 사용법은 [plugins/knowledge-graph-engineer/README.md](./plugins/knowledge-graph-engineer/README.md) 참고.
 
 ## 요구 사항
 

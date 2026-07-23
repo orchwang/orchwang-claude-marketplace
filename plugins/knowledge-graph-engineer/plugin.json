@@ -1,0 +1,23 @@
+{
+  "name": "knowledge-graph-engineer",
+  "version": "1.0.0",
+  "description": "Agentic Knowledge Graph 설계·구축 전문가 — 코퍼스→LLM 추출→그래프 DB(Neo4j/Cypher·RDF/SPARQL)→GraphRAG·임베딩/추론→에이전트 도구·기억(temporal KG)까지 설계 자문과 산출물 생성으로 지원",
+  "author": {
+    "name": "orchwang"
+  },
+  "homepage": "https://github.com/orchwang/orchwang-claude-marketplace",
+  "repository": "https://github.com/orchwang/orchwang-claude-marketplace.git",
+  "license": "MIT",
+  "keywords": [
+    "knowledge-graph",
+    "graphrag",
+    "agentic",
+    "neo4j",
+    "cypher",
+    "sparql",
+    "entity-resolution",
+    "link-prediction",
+    "temporal-graph",
+    "agent-memory"
+  ]
+}

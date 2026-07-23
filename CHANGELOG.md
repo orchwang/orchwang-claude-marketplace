@@ -7,6 +7,20 @@
 
 ## [Unreleased]
 
+## [1.6.0] - 2026-07-23
+
+### Added
+- `knowledge-graph-engineer` 플러그인 v1.0.0 신규 — Agentic Knowledge Graph 설계+실무 하이브리드 전문가
+  - `knowledge-graph-engineer` skill: "연결이 답인가"를 판단 프레임으로, 코퍼스→LLM 추출→그래프 DB→GraphRAG·추론→에이전트 도구·기억(temporal KG)까지 설계·리뷰·구현. 산출물 가이드(그래프 스키마·Cypher·추출 파이프라인·GraphRAG 인덱스·에이전트 도구/메모리 설계) 포함
+  - `knowledge-graph-engineer` agent: 연결 판단→저장·질의 모델→스키마·추출·엔티티 해소→GraphRAG→임베딩·추론→에이전트화(도구+기억)→프로덕션 검토의 8단계 end-to-end 자율 에이전트
+  - references 3종(progressive disclosure): `foundations-and-graph-stores.md`(속성그래프 vs RDF·Cypher/SPARQL·NER/RE·엔티티 해소), `construction-graphrag-reasoning.md`(LLM 추출·GraphRAG local/global·임베딩·링크 예측·GNN), `agentic-kg-and-usecases.md`(그래프 도구·기억·temporal KG·도메인 변주·프로덕션 체크리스트)
+  - 지식 출처: `orchwang.github.io` 위키의 Agentic-Knowledge-Graph 시리즈(8단계 커리큘럼). knowledge-librarian 방식으로 시리즈 9개 문서를 증류
+  - 인접 전문가 경계: 시맨틱 레이어 설계는 `ontology-expert`, 물리 파이프라인은 `data-engineer`, 지식 소스 인덱싱은 `knowledge-librarian`으로 위임/상호참조
+
+### Changed
+- `.claude-plugin/marketplace.json` plugins 배열에 `knowledge-graph-engineer` 등록
+- 루트 `README.md` 플러그인 카탈로그에 `knowledge-graph-engineer` 추가
+
 ## [1.5.0] - 2026-07-21
 
 ### Added

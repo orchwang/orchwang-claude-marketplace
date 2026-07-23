@@ -34,6 +34,12 @@
       "source": "./plugins/knowledge-librarian",
       "description": "사람이 관리하는 wiki/지식 저장소(md)를 read-only 소스로 지정해 카탈로그화·검색(indexer)하고, 관련 지식을 전문 서브에이전트에게 근거로 전달(dispatch)",
       "version": "1.0.0"
+    },
+    {
+      "name": "knowledge-graph-engineer",
+      "source": "./plugins/knowledge-graph-engineer",
+      "description": "Agentic Knowledge Graph 설계·구축 전문가 — 코퍼스→LLM 추출→그래프 DB(Neo4j/Cypher·RDF/SPARQL)→GraphRAG·임베딩/추론→에이전트 도구·기억(temporal KG)까지 설계 자문과 산출물 생성으로 지원",
+      "version": "1.0.0"
     }
   ]
 }
