@@ -37,6 +37,7 @@ orchwang 프로젝트 개발을 위한 개인 Claude Code 플러그인 마켓플
 | [ontology-expert](#ontology-expert) | 온톨로지·시맨틱 레이어 설계 전문가(FDE — 객체·링크·매핑·액션·거버넌스) | 1.0.0 | expert |
 | [knowledge-librarian](#knowledge-librarian) | wiki/지식 저장소(md)를 read-only 소스로 인덱싱·검색하고 전문 서브에이전트에 근거 전달 | 1.0.0 | knowledge |
 | [knowledge-graph-engineer](#knowledge-graph-engineer) | Agentic KG 설계·구축 전문가(코퍼스→추출→그래프 DB→GraphRAG·추론→에이전트 도구·기억) | 1.0.0 | expert |
+| [tmux-orchestrator](#tmux-orchestrator) | 실행 중인 tmux claude pane 을 발견·역할 태깅해 멀티 에이전트 오케스트레이션(SDD→제안 게이트→프로파일 dispatch→마커 완료감지) | 0.1.0 | orchestration |
 
 ### orchwang-general
 
@@ -123,6 +124,19 @@ Agentic Knowledge Graph **설계+실무 하이브리드 전문가** 플러그인
 ```
 
 > 시맨틱 레이어 설계는 `ontology-expert`, 물리 파이프라인은 `data-engineer`로 위임/상호참조합니다. 자세한 사용법은 [plugins/knowledge-graph-engineer/README.md](./plugins/knowledge-graph-engineer/README.md) 참고.
+
+### tmux-orchestrator
+
+실행 중인 tmux `claude` pane 들을 발견해 역할을 배정하고, 하나의 오케스트레이터 세션(tech-lead)이 멀티 에이전트 협업을 지휘하는 **실험적(v0.1.0)** 플러그인입니다. SDD 로 필요 역할을 도출하고 → 가용 pane 을 진단해 **제안한 뒤 사용자 승인(human gate)** 을 받고 → 프로파일(model·effort·attitude 프리셋)을 적용해 dispatch 하며 → 마커(`[ROLE-N DONE]`)로 완료를 감지·수집합니다. 상태는 tmux pane user-option 에만 저장됩니다.
+
+**구성:** `discover-agents`·`plan-roles`·`dispatch-task` skill + `orchestrator` agent + `/orchestrate`·`/panes` command + `scripts/tmuxctl.sh`(결정적 CLI).
+
+**설치:**
+```bash
+/plugin install tmux-orchestrator@orchwang-marketplace
+```
+
+> 1차 범위는 claude pane 만(codex 등 후속 과제). 완료·유휴 판정은 휴리스틱입니다. 자세한 사용법은 [plugins/tmux-orchestrator/README.md](./plugins/tmux-orchestrator/README.md) 참고.
 
 ## 요구 사항
 

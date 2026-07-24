@@ -7,6 +7,25 @@
 
 ## [Unreleased]
 
+## [1.7.0] - 2026-07-24
+
+### Added
+- `tmux-orchestrator` 플러그인 v0.1.0 신규(실험적) — 실행 중인 tmux `claude` pane 을 발견·역할 태깅해 멀티 에이전트 협업을 오케스트레이션
+  - `discover-agents` skill: 전 tmux 세션에서 claude pane 을 스캔해 역할·프로파일·유휴 상태와 함께 목록화(read-only)
+  - `plan-roles` skill: SDD 필요 역할↔가용 pane 매칭, 구현 대상 성격→attitude 프리셋 선택, 제안 리포트 생성(human gate — 승인 전 무동작). `references/presets.md` 포함
+  - `dispatch-task` skill: 프로파일 적용(`/model`·태깅)·브리핑 주입·마커(`[ROLE-N DONE]`) 완료감지·수집·reviewer 교차검토
+  - `orchestrator` agent: tech-lead 로서 SDD(Phase A)→진단·제안 게이트(Phase B)→dispatch·수집(Phase C)의 3-Phase 루프 구동. 승인 게이트·자기보호·자동재시도 금지 원칙
+  - `/orchestrate`·`/panes` command
+  - `scripts/tmuxctl.sh`: 모든 tmux 조작을 캡슐화한 결정적 CLI(`discover/tag/read/ready/send/wait/apply-profile/spawn/preset`). 상태는 tmux pane user-option(`@agent-*`)에 저장
+  - attitude 프리셋 economy/speed/quality/prose(워커 모델 haiku/sonnet/opus). spawn 경로는 `--model/--effort/--permission-mode/--max-budget-usd` 로 프로파일 완전 강제, 기존 pane 은 model+fast+directive 부분 적용
+  - **orchestrator 전용 모델 = `claude-fable-5` 고정**: Fable 5 가 장기 에이전틱·비동기 다중 에이전트 조율에 SOTA(claude-api 레퍼런스 확인)라 지휘 두뇌로 채택. 워커는 저비용 티어 사용
+  - 1차 범위: claude pane 한정(codex 등 후속 과제). 완료·유휴 판정은 마커 컨벤션+화면 폴링 휴리스틱
+  - 설계 문서: `specs/tmux-orchestrator-plugin/{requirements,specs,plans}.md`
+
+### Changed
+- `.claude-plugin/marketplace.json` plugins 배열에 `tmux-orchestrator` 등록
+- 루트 `README.md` 플러그인 카탈로그에 `tmux-orchestrator` 추가(신규 카테고리: orchestration)
+
 ## [1.6.0] - 2026-07-23
 
 ### Added

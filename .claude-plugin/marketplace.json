@@ -40,6 +40,12 @@
       "source": "./plugins/knowledge-graph-engineer",
       "description": "Agentic Knowledge Graph 설계·구축 전문가 — 코퍼스→LLM 추출→그래프 DB(Neo4j/Cypher·RDF/SPARQL)→GraphRAG·임베딩/추론→에이전트 도구·기억(temporal KG)까지 설계 자문과 산출물 생성으로 지원",
       "version": "1.0.0"
+    },
+    {
+      "name": "tmux-orchestrator",
+      "source": "./plugins/tmux-orchestrator",
+      "description": "실행 중인 tmux claude pane 을 발견·역할 태깅하여 멀티 에이전트 협업을 오케스트레이션 — SDD 계획 후 capacity 진단·제안(human gate)·프로파일(model·effort·attitude 프리셋) 기반 dispatch·마커 완료감지·결과 통합",
+      "version": "0.1.0"
     }
   ]
 }

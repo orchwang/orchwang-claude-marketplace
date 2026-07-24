@@ -1,0 +1,21 @@
+{
+  "name": "tmux-orchestrator",
+  "version": "0.1.0",
+  "description": "실행 중인 tmux claude pane 을 발견·역할 태깅하여 멀티 에이전트 협업을 오케스트레이션 — SDD 계획 후 capacity 진단·제안(human gate)·프로파일(model·effort·attitude 프리셋) 기반 dispatch·마커 완료감지·결과 통합",
+  "author": {
+    "name": "orchwang"
+  },
+  "homepage": "https://github.com/orchwang/orchwang-claude-marketplace",
+  "repository": "https://github.com/orchwang/orchwang-claude-marketplace.git",
+  "license": "MIT",
+  "keywords": [
+    "orchestration",
+    "multi-agent",
+    "tmux",
+    "claude",
+    "tech-lead",
+    "dispatch",
+    "attitude-preset",
+    "sdd"
+  ]
+}
